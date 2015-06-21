@@ -1,0 +1,5 @@
+# IPv4 local connections:
+local   all    all    trust
+<% node['postgresql']['connections'].each do | connection | %>
+<%= connection %>
+<% end %>

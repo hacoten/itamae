@@ -1,0 +1,38 @@
+{
+
+  "ssl": {
+    "certificate": {
+      "strength": 2048,
+      "serial": 0,
+      "days": 365,
+      "subject": "/C=JP/CN=localhost",
+      "crt_file": "/etc/pki/tls/certs/node.crt",
+      "key_file": "/etc/pki/tls/private/node.key",
+      "crt_and_key_file": "/etc/pki/tls/private/node.crt_and_key"
+    }
+  },
+
+  "nginx": {
+    "server_name": "node",
+    "doc_root": "/var/www/html"
+  },
+
+  "postgresql": {
+    "data_dir": "/var/lib/pgsql/data",
+    "listen_addresses": "'*'",
+    "port": 5432,
+    "connections": [
+      "host    all    all    127.0.0.1/32    trust",
+      "host    all    all    0.0.0.0/0    md5"
+    ],
+    "user": "postgres",
+    "passwd": "md53175bce1d3201d16594cebf9d7eb3f9d"
+  },
+
+  "memo": [
+    "ここにメモを残します",
+    "jsonファイルはコメント機能がないため"
+    "postgresqlのpasswdは'postgres'です。(md5化されてます)"
+  ]
+
+}

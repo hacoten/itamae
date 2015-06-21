@@ -1,0 +1,7 @@
+log_timezone = 'Japan'
+datestyle = 'iso, mdy'
+timezone = 'Japan'
+default_text_search_config = 'pg_catalog.english'
+
+listen_addresses = <%= node['postgresql']['listen_addresses'] %>
+port = <%= node['postgresql']['port'] %>         # (change requires restart)

@@ -1,0 +1,37 @@
+server {
+
+    listen    80;
+
+    server_name    <%= node['nginx']['server_name'] %>;
+
+    return 301 https://<%= node['nginx']['server_name'] %>$request_uri;
+
+}
+
+server {
+
+    listen    443 ssl;
+
+    server_name    <%= node['nginx']['server_name'] %>;
+
+    ssl                  on;
+    ssl_certificate      <%= node['ssl']['certificate']['crt_file'] %>;
+    ssl_certificate_key  <%= node['ssl']['certificate']['key_file'] %>;
+
+    ssl_session_timeout  5m;
+
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    # ssl_trusted_certificate /etc/nginx/ssl/startssl/sub.class1.server.ca.pem;
+    ssl_prefer_server_ciphers   on;
+    ssl_ciphers 'kEECDH+ECDSA+AES128 kEECDH+ECDSA+AES256 kEECDH+AES128 kEECDH+AES256 kEDH+AES128 kEDH+AES256 DES-CBC3-SHA +SHA !aNULL !eNULL !LOW !kECDH !DSS !MD5 !EXP !PSK !SRP !CAMELLIA !SEED';
+    # ssl_stapling on;
+
+    ssl_session_cache builtin:1000 shared:SSL:10m;
+
+    location / {
+        root   <%= node['nginx']['doc_root'] %>;
+        index  index.html index.htm;
+    }
+
+    # include /etc/nginx/conf.d/default.ssl.location.d/*.conf;
+}
